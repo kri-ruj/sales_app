@@ -1,0 +1,194 @@
+<context>
+# Overview  
+Bright Sales AI is an advanced voice-enabled Customer Relationship Management (CRM) application that revolutionizes how sales teams manage customer interactions, deals, and activities through AI-powered voice assistance. The platform combines traditional CRM functionality with cutting-edge voice recognition, real-time transcription, and intelligent AI assistance to streamline sales processes and enhance productivity.
+
+The system addresses the inefficiency of manual data entry, missed follow-ups, and fragmented customer communication by providing a unified platform where sales representatives can interact naturally through voice commands while maintaining comprehensive digital records.
+
+# Core Features  
+## Voice Recording & Transcription
+- Real-time voice recording with high-quality audio capture
+- Automatic transcription using AI/ML services with fallback mechanisms
+- Multi-language support (Thai and English)
+- Voice note conversion to structured activities
+- Audio playback and management
+
+## AI-Powered Assistant
+- Floating chat interface with voice and text input
+- Contextual responses based on CRM data
+- Automatic activity creation from voice notes
+- Smart recommendations for follow-ups and actions
+- Integration with existing CRM workflows
+
+## Customer Management
+- Comprehensive customer database with detailed profiles
+- Contact management with multiple communication channels
+- Customer interaction history and timeline
+- Search and filtering capabilities
+- Customer segmentation and categorization
+
+## Deal Pipeline Management
+- Visual deal pipeline with customizable stages
+- Deal creation, editing, and progression tracking
+- Financial tracking and revenue forecasting
+- Deal assignment and team collaboration
+- Automated deal progression workflows
+
+## Activity Tracking
+- Comprehensive activity logging (calls, meetings, emails, voice notes)
+- Automated activity creation from voice recordings
+- Activity categorization and status management
+- Follow-up reminders and task management
+- Activity analytics and reporting
+
+## Authentication & Security
+- Multi-factor authentication options
+- LINE OAuth integration for social login
+- Secure user session management
+- Role-based access control
+- Data encryption and privacy protection
+
+# User Experience  
+## Primary User Personas
+- **Sales Representatives**: Field sales professionals who need to quickly log customer interactions and access information on-the-go
+- **Sales Managers**: Team leaders who need visibility into team performance and deal progression
+- **Customer Service Teams**: Support staff who need access to comprehensive customer interaction history
+
+## Key User Flows
+1. **Voice Note Creation**: User records voice note → AI transcribes → System creates structured activity → User confirms and saves
+2. **Customer Lookup**: User speaks customer name → AI searches database → System displays customer profile and recent interactions
+3. **Deal Management**: User navigates to deals → Views pipeline → Updates deal status via voice or interface → System tracks changes
+4. **AI Assistant Interaction**: User activates assistant → Speaks query or types → AI provides contextual response → User takes suggested actions
+
+## UI/UX Considerations
+- Mobile-first responsive design for field sales usage
+- Intuitive voice activation with clear visual feedback
+- Minimalist interface to reduce cognitive load
+- Fast loading times for on-the-go access
+- Accessibility features for diverse user needs
+</context>
+
+<PRD>
+# Technical Architecture  
+## System Components
+- **Frontend**: React 18 with TypeScript, Tailwind CSS for styling
+- **Backend**: Node.js/Express API server with MongoDB database
+- **Voice Processing**: Web Audio API with speech recognition services
+- **AI Integration**: GPT/Claude integration for intelligent responses
+- **Authentication**: JWT-based auth with social login support
+- **Storage**: Cloud storage for audio files and attachments
+
+## Data Models
+- **Users**: Profile, preferences, role, authentication tokens
+- **Customers**: Contact information, company details, interaction history
+- **Deals**: Pipeline stage, value, probability, associated activities
+- **Activities**: Type, description, transcription, audio files, timestamps
+- **Voice Recordings**: Audio blobs, transcription metadata, confidence scores
+
+## APIs and Integrations
+- RESTful API endpoints for all CRUD operations
+- WebSocket connections for real-time updates
+- Third-party transcription services (primary + fallback)
+- LINE OAuth API for social authentication
+- Voice synthesis API for AI assistant speech output
+
+## Infrastructure Requirements
+- Cloud hosting with auto-scaling capabilities
+- CDN for audio file delivery
+- Database with backup and replication
+- SSL certificates for secure communications
+- Monitoring and logging systems
+
+# Development Roadmap  
+## Phase 1: Core Foundation (MVP)
+- Basic authentication system with login/register
+- Customer management CRUD operations
+- Simple deal pipeline interface
+- Basic activity logging
+- Responsive UI framework setup
+
+## Phase 2: Voice Integration
+- Voice recording functionality
+- Audio transcription implementation
+- Voice note to activity conversion
+- Audio playback capabilities
+- Error handling and fallback systems
+
+## Phase 3: AI Assistant
+- Floating chat interface implementation
+- AI response generation system
+- Voice input/output for assistant
+- Context-aware suggestions
+- Integration with CRM data
+
+## Phase 4: Advanced Features
+- Advanced reporting and analytics
+- Team collaboration features
+- Mobile app optimization
+- Performance optimization
+- Advanced AI capabilities
+
+## Phase 5: Enterprise Features
+- Role-based permissions
+- Advanced integrations
+- Custom workflows
+- Enterprise security features
+- Scalability improvements
+
+# Logical Dependency Chain
+## Foundation First (Critical Path)
+1. **Authentication System**: Must be implemented first as all other features depend on user sessions
+2. **Database Models**: Core data structures for users, customers, deals, activities
+3. **Basic CRUD Operations**: Essential for any CRM functionality
+4. **UI Framework**: Responsive layout and navigation system
+
+## Core CRM Features (Building Blocks)
+5. **Customer Management**: Foundation for all customer-related activities
+6. **Deal Pipeline**: Core sales tracking functionality
+7. **Activity System**: Base for all interaction logging
+
+## Voice & AI Layer (Enhancement)
+8. **Voice Recording**: Technical foundation for voice features
+9. **Transcription Service**: Required before voice-to-text conversion
+10. **Voice Assistant**: AI layer that enhances existing CRM functions
+11. **Voice Integration**: Connecting voice features to CRM workflows
+
+## Optimization & Polish (Final Layer)
+12. **Performance Optimization**: Ensuring smooth user experience
+13. **Advanced Features**: Reports, analytics, team features
+14. **Mobile Enhancement**: Optimizing for mobile usage patterns
+
+# Risks and Mitigations  
+## Technical Challenges
+- **Voice Recognition Accuracy**: Implement multiple transcription services with fallback mechanisms
+- **Real-time Performance**: Use WebSocket connections and optimize database queries
+- **Cross-browser Compatibility**: Extensive testing on major browsers and devices
+- **Audio Quality Issues**: Implement noise cancellation and audio optimization
+
+## MVP Scope Management
+- **Feature Creep**: Strictly prioritize core CRM functions for MVP
+- **Over-engineering**: Focus on working features over perfect architecture initially
+- **User Feedback Loop**: Implement basic analytics to understand usage patterns
+
+## Resource Constraints
+- **Development Timeline**: Break features into atomic, testable components
+- **API Rate Limits**: Implement caching and rate limiting strategies
+- **Storage Costs**: Optimize audio compression and implement cleanup policies
+
+# Appendix  
+## Research Findings
+- Voice-enabled applications increase data entry speed by 3x
+- Mobile CRM usage accounts for 65% of sales team interactions
+- AI assistance reduces manual task time by 40%
+
+## Technical Specifications
+- Audio Format: WebM with Opus codec for web compatibility
+- Transcription Confidence: Minimum 85% confidence for auto-acceptance
+- Response Time: <2 seconds for voice transcription, <1 second for AI responses
+- Browser Support: Chrome 80+, Firefox 75+, Safari 14+, Edge 80+
+
+## Integration Requirements
+- LINE OAuth 2.0 for social authentication
+- Speech-to-Text API with Thai and English support
+- Text-to-Speech for AI assistant voice output
+- Cloud storage for audio file management
+</PRD> 
