@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEO Photo Processor - Freshket</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .upload-area {
+            border: 3px dashed #22c55e;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            background: #f0fdf4;
+            border-color: #16a34a;
+        }
+        .preview-area {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .preview-img {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        button {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #16a34a;
+        }
+        .step {
+            background: #f8fafc;
+            border-left: 4px solid #22c55e;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .step-number {
+            background: #22c55e;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: #22c55e;">📸 CEO Photo Processor</h1>
+        <p style="text-align: center; color: #64748b;">Process Ponglada (Bell)'s professional headshot for Freshket</p>
+        
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Upload Photo:</strong> Click the area below to select the CEO photo
+        </div>
+        
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <input type="file" id="fileInput" style="display: none;" accept="image/*">
+            <h3>📁 Click to Upload CEO Photo</h3>
+            <p>Select the professional photo of Ponglada (Bell)</p>
+        </div>
+        
+        <div class="preview-area" id="previewArea" style="display: none;">
+            <h3>Preview:</h3>
+            <img id="previewImg" class="preview-img">
+            <div class="controls">
+                <button onclick="cropSquare()">✂️ Crop to Square</button>
+                <button onclick="downloadImage()">💾 Download for Freshket</button>
+            </div>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Process:</strong> Crop to square format for best results
+        </div>
+        
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Save:</strong> Download and save as "ceo-freshket.jpg" in your /public/ folder
+        </div>
+        
+        <div class="step">
+            <span class="step-number">4</span>
+            <strong>Test:</strong> Refresh your login page to see the results!
+        </div>
+        
+        <div style="background: #eff6ff; padding: 15px; border-radius: 8px; margin-top: 20px;">
+            <h4 style="color: #1e40af; margin: 0 0 10px 0;">🎯 Pro Tips:</h4>
+            <ul style="color: #64748b; margin: 0;">
+                <li>Square crop (400x400px) works best</li>
+                <li>Focus on face and shoulders</li>
+                <li>Keep file under 500KB</li>
+                <li>The app will auto-resize for perfect fit</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let originalImage = null;
+        
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    originalImage = new Image();
+                    originalImage.onload = function() {
+                        document.getElementById('previewImg').src = e.target.result;
+                        document.getElementById('previewArea').style.display = 'block';
+                    };
+                    originalImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        function cropSquare() {
+            if (!originalImage) return;
+            
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Make it square, focusing on the center
+            const size = Math.min(originalImage.width, originalImage.height);
+            canvas.width = 400;
+            canvas.height = 400;
+            
+            const offsetX = (originalImage.width - size) / 2;
+            const offsetY = (originalImage.height - size) / 2;
+            
+            ctx.drawImage(originalImage, offsetX, offsetY, size, size, 0, 0, 400, 400);
+            
+            // Update preview
+            document.getElementById('previewImg').src = canvas.toDataURL('image/jpeg', 0.8);
+        }
+        
+        function downloadImage() {
+            const img = document.getElementById('previewImg');
+            const link = document.createElement('a');
+            link.download = 'ceo-freshket.jpg';
+            link.href = img.src;
+            link.click();
+        }
+    </script>
+</body>
+</html> 
