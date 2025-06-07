@@ -1,0 +1,176 @@
+{
+  "liff": {
+    "name": "Bright Sales CRM",
+    "description": "AI-powered voice-first CRM for Thai sales teams",
+    "icon": "https://your-domain.com/icon-512x512.png",
+    "type": "full",
+    "url": "https://your-domain.com",
+    "features": {
+      "ble": false,
+      "qrCodeReader": true,
+      "shareTargetPicker": true
+    },
+    "scope": [
+      "profile",
+      "openid",
+      "chat_message.write"
+    ],
+    "botPrompt": "normal"
+  },
+  "deployment": {
+    "environments": {
+      "development": {
+        "url": "http://localhost:3999",
+        "description": "Development environment for testing"
+      },
+      "staging": {
+        "url": "https://staging.brightsales.app",
+        "description": "Staging environment for testing"
+      },
+      "production": {
+        "url": "https://app.brightsales.app",
+        "description": "Production environment"
+      }
+    }
+  },
+  "manifest": {
+    "name": "Bright Sales",
+    "short_name": "BrightSales",
+    "description": "AI-powered voice-first CRM application",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FAFBFF",
+    "theme_color": "#3B82F6",
+    "icons": [
+      {
+        "src": "/icons/icon-72x72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-128x128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-144x144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-152x152.png",
+        "sizes": "152x152",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  },
+  "lineBot": {
+    "features": {
+      "webhookUrl": "https://your-domain.com/api/line/webhook",
+      "richMenu": {
+        "enabled": true,
+        "size": {
+          "width": 2500,
+          "height": 1686
+        },
+        "selected": false,
+        "name": "Bright Sales Menu",
+        "chatBarText": "Menu",
+        "areas": [
+          {
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 833,
+              "height": 843
+            },
+            "action": {
+              "type": "uri",
+              "uri": "https://line.me/R/app/1234567890-ABCDEFGH"
+            }
+          },
+          {
+            "bounds": {
+              "x": 833,
+              "y": 0,
+              "width": 834,
+              "height": 843
+            },
+            "action": {
+              "type": "message",
+              "text": "รายงาน"
+            }
+          },
+          {
+            "bounds": {
+              "x": 1667,
+              "y": 0,
+              "width": 833,
+              "height": 843
+            },
+            "action": {
+              "type": "message",
+              "text": "ช่วยเหลือ"
+            }
+          },
+          {
+            "bounds": {
+              "x": 0,
+              "y": 843,
+              "width": 833,
+              "height": 843
+            },
+            "action": {
+              "type": "message",
+              "text": "สถานะ"
+            }
+          },
+          {
+            "bounds": {
+              "x": 833,
+              "y": 843,
+              "width": 834,
+              "height": 843
+            },
+            "action": {
+              "type": "uri",
+              "uri": "https://your-domain.com/dashboard"
+            }
+          },
+          {
+            "bounds": {
+              "x": 1667,
+              "y": 843,
+              "width": 833,
+              "height": 843
+            },
+            "action": {
+              "type": "uri",
+              "uri": "https://your-domain.com/settings"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frontend Backend Connection Test</title>
+</head>
+<body>
+    <h1>Frontend Backend Connection Test</h1>
+    <button onclick="testConnection()">Test Backend Connection</button>
+    <div id="result"></div>
+
+    <script>
+        async function testConnection() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                // Test health endpoint
+                const healthResponse = await fetch('http://localhost:4000/api/health');
+                const healthData = await healthResponse.json();
+                resultDiv.innerHTML += '<p>✅ Health check: ' + JSON.stringify(healthData) + '</p>';
+                
+                // Test login
+                const loginResponse = await fetch('http://localhost:4000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: 'test@test.com',
+                        password: 'test123'
+                    })
+                });
+                
+                const loginData = await loginResponse.json();
+                if (loginData.success) {
+                    resultDiv.innerHTML += '<p>✅ Login successful! Token: ' + loginData.data.token.substring(0, 20) + '...</p>';
+                    
+                    // Test customers API
+                    const customersResponse = await fetch('http://localhost:4000/api/customers', {
+                        headers: {
+                            'Authorization': 'Bearer ' + loginData.data.token
+                        }
+                    });
+                    const customersData = await customersResponse.json();
+                    resultDiv.innerHTML += '<p>✅ Customers API: Found ' + customersData.data.length + ' customers</p>';
+                    resultDiv.innerHTML += '<p>Customer 1: ' + customersData.data[0].name + '</p>';
+                } else {
+                    resultDiv.innerHTML += '<p>❌ Login failed: ' + loginData.message + '</p>';
+                }
+                
+            } catch (error) {
+                resultDiv.innerHTML += '<p>❌ Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>
